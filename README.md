@@ -19,44 +19,43 @@ The project explores how LLM-based applications can support manufacturing engine
 
 ## Architecture
 
-```text
-Manufacturing WI / SOP
-        │
-        ▼
-Document Parsing & Cleaning
-        │
-        ▼
-Domain-Aware / Semantic Chunking
-        │
-        ▼
-Sentence Transformer Embeddings
-        │
-        ▼
-Qdrant Vector Database
-        │
-        ▼
-Query Rewriting & Routing
-        │
-        ▼
-Hybrid Retrieval
-(Vector Search + Keyword Search)
-        │
-        ▼
-Cross-Encoder Reranking
-        │
-        ▼
-Context Reconstruction
-        │
-        ▼
-LLM Generation
-        │
-        ▼
-Grounded Answer + Sources
-        │
-        ▼
-RAG Evaluation
-```
+```mermaid
+flowchart TD
+    A[Manufacturing WI / SOP Documents]
+    B[Document Parsing & Cleaning]
+    C[Domain-Aware Chunking]
+    D[Semantic Chunk Merging]
+    E[Sentence Transformer Embeddings]
+    F[(Qdrant Vector Database)]
 
+    G[User Query]
+    H[Query Rewriting]
+    I[Query & Source Routing]
+    J[Hybrid Retrieval<br/>Vector + Keyword Search]
+    K[Cross-Encoder Reranking]
+    L[Context Reconstruction]
+    M[LLM Generation]
+    N[Grounded Answer + Sources]
+    O[RAG Evaluation]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+
+    G --> H
+    H --> I
+    I --> J
+    F --> J
+    J --> K
+    K --> L
+    L --> M
+    M --> N
+
+    N --> O
+    L --> O
+```
 ## RAG Evaluation
 
 The project includes a custom evaluation module for manufacturing procedural knowledge.
